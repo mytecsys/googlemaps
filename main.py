@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+import csv
 
 def run(playwright):
     browser = playwright.chromium.launch(headless=False)  # Set to True to run in headless mode
@@ -10,8 +11,17 @@ def run(playwright):
     page.goto(url)
     page.wait_for_selector(".hfpxzc", timeout=10000)
     page.click(".hfpxzc")
-    text = page.text_content(".DUwDvf")
-    print(text)
+    textdata = page.text_content(".DUwDvf")
+    textdata2 = page.text_content(".Io6YTe")
+
+    print(textdata)
+    mapdata = []
+    mapdata.append({'title': textdata, 'price': textdata2})
+    filename='mapdata.csv'
+    with open(filename, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=['title', 'price'])
+        writer.writeheader()
+        writer.writerows(mapdata)
  
 
 
