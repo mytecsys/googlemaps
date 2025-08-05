@@ -16,10 +16,10 @@ def run(playwright):
 
     print(textdata)
     mapdata = []
-    mapdata.append({'title': textdata, 'price': textdata2})
+    mapdata.append({'business_name': textdata, 'address': textdata2})
     filename='mapdata.csv'
     with open(filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['title', 'price'])
+        writer = csv.DictWriter(file, fieldnames=['business_name', 'address'])
         writer.writeheader()
         writer.writerows(mapdata)
  
